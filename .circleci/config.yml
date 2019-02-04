@@ -1,0 +1,16 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: circleci/ruby-2.6.1
+jobs:
+  bundle:
+    executor: default
+    steps:
+      - checkout
+workflows:
+  version: 2.1
+  sample:
+    jobs:
+      - bundle
