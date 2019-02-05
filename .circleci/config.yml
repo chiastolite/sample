@@ -11,6 +11,7 @@ jobs:
     executor: default
     steps:
       - checkout
+      - run: bundle update --bundler
       - run: bundle install --path /tmp/vendor/bundle
       - persist_to_workspace:
           root: /tmp
