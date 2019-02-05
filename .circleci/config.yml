@@ -4,24 +4,24 @@ executors:
   default:
     docker:
       - image: circleci/ruby:2.6.1-node-browsers
-    working_directory: /app
+    working_directory: ~/app
 
 jobs:
   bundle:
     executor: default
     steps:
       - checkout
-      - run: bundle install --path vendor/bundle
+      - run: bundle install --path /tmp/vendor/bundle
       - persist_to_workspace:
-          root: vendor
-          paths: bundle
+          root: /tmp
+          paths: vendor/bundle
 
   test:
     executor: default
     steps:
       - checkout
       - attach_workspace:
-          at: /app/vendor/bundle
+          at: /tmp/vendor/bundle
       - run: 'bin/rails rspec'
 
 workflows:
